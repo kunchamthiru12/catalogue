@@ -40,17 +40,7 @@ pipeline {
                 """
             }
         }
-        // stage('Build'){
-        //     steps{
-        //         sh """
-        //            ls-la
-        //            zip -q -r catalogue.zip ./* -x ".git"-x ".zip"
-        //            ls-ltr
-        //         """   
-        //     }
-
-        // }
-        stage('Test') {
+         stage('Test') {
             steps {
                 echo 'Testing..'
             }
