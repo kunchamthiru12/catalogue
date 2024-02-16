@@ -40,16 +40,16 @@ pipeline {
                 """
             }
         }
-        stage('Build'){
-            steps{
-                sh """
-                   ls-la
-                   zip -q -r catalogue.zip ./* -x ".git"-x ".zip"
-                   ls-ltr
-                """   
-            }
+        // stage('Build'){
+        //     steps{
+        //         sh """
+        //            ls-la
+        //            zip -q -r catalogue.zip ./* -x ".git"-x ".zip"
+        //            ls-ltr
+        //         """   
+        //     }
 
-        }
+        // }
         stage('Test') {
             steps {
                 echo 'Testing..'
