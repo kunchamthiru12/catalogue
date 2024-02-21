@@ -6,7 +6,7 @@ pipeline {
     }
     environment { 
         packageVersion = ''
-        nexusURL = '172.31.15.164:8081'
+        // nexusURL = '172.31.15.164:8081'
     }    
     options{
         timeout(time:1,unit:'HOURS')
@@ -47,36 +47,36 @@ pipeline {
             }
         }
 
-         stage('Build') {
-            steps {
-                sh """
-                    ls -la
-                    zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
-                    ls -ltr
-                """
-            }
-        }
+        //  stage('Build') {
+        //     steps {
+        //         sh """
+        //             ls -la
+        //             zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+        //             ls -ltr
+        //         """
+        //     }
+        // }
 
 
-        stage('Publish Artifact') {
-            steps {
-                 nexusArtifactUploader(
-                    nexusVersion: 'nexus3',
-                    protocol: 'http',
-                    nexusUrl: "${nexusURL}",
-                    groupId: 'com.roboshop',
-                    version: "${packageVersion}",
-                    repository: 'catalogue',
-                    credentialsId: 'nexus-auth',
-                    artifacts: [
-                        [artifactId: 'catalogue',
-                        classifier: '',
-                        file: 'catalogue.zip',
-                        type: 'zip']
-                    ]
-                )
-            }
-        }
+        // stage('Publish Artifact') {
+        //     steps {
+        //          nexusArtifactUploader(
+        //             nexusVersion: 'nexus3',
+        //             protocol: 'http',
+        //             nexusUrl: "${nexusURL}",
+        //             groupId: 'com.roboshop',
+        //             version: "${packageVersion}",
+        //             repository: 'catalogue',
+        //             credentialsId: 'nexus-auth',
+        //             artifacts: [
+        //                 [artifactId: 'catalogue',
+        //                 classifier: '',
+        //                 file: 'catalogue.zip',
+        //                 type: 'zip']
+        //             ]
+        //         )
+        //     }
+        // }
         stage('Deploy') {
             steps {
                 sh"""
